@@ -3,9 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
   exportPathMap() {
     return {
-      '/': { page: '/' },
-    }
-  }
-}
+      "/": { page: "/" },
+    };
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
