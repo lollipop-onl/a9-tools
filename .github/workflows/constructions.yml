@@ -6,6 +6,8 @@ jobs:
   download:
     name: Download json
     runs-on: ubuntu-latest
+    env:
+      CONSTRUCTION_API_PATH: public/api/v1/constructions.json
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -16,7 +18,7 @@ jobs:
         run: yarn install --production --frozen-lockfile
       - name: Download constructions json
         run: |
-          curl -L -o public/api/v1/constructions.json ${{ secrets.CONSTRUCTIONS_API_ENDPOINT }}
+          curl -L -o ${{ env.CONSTRUCTION_API_PATH }} ${{ secrets.CONSTRUCTIONS_API_ENDPOINT }}
       - name: Run formatting
         run: yarn format --write
       - name: Push json file
@@ -24,6 +26,6 @@ jobs:
           git remote set-url origin https://github-actions:${{ github.token }}@github.com/${{ github.repository }}
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-          git add assets/constructions.json
+          git add ${{ env.CONSTRUCTION_API_PATH }}
           git commit -m "🏢 Update constructions.json"
           git push origin HEAD:${{ github.ref }}
