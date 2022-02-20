@@ -7,8 +7,7 @@
     "dev": "next dev",
     "build": "next build && next export",
     "lint": "next lint",
-    "format": "prettier \"*/**.{js,ts,tsx,json,yml,md}\"",
-    "update-constructions": "curl "
+    "format": "prettier \"*/**.{js,ts,tsx,json,yml,md}\""
   },
   "dependencies": {
     "husky": "^7.0.4",
