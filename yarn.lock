@@ -139,6 +139,11 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.0.tgz#7f698254aadf921e48dda8c0a6b304026b8a9323"
   integrity sha512-JLo+Y592QzIE+q7Dl2pMUtt4q8SKYI5jDrZxrozEQxnGVOyYE+GWK9eLkwTaeN9DDctlaRAQ3TBmzZ1qdLE30A==
 
+"@tsconfig/next@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@tsconfig/next/-/next-1.0.2.tgz#46a02b7b8cf5e716a5da3c2a319a5a41f7a2be3d"
+  integrity sha512-8/iOg2XM5hZqs6+2asWLv04vzZ8eue7xe/ZWvLZD1cTSpulkTZLFKP+WEDzHGEZYeWpR+JlStWBZZJ7SL4a6pA==
+
 "@types/json5@^0.0.29":
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
