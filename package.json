@@ -5,7 +5,7 @@
   "scripts": {
     "prepare": "husky install",
     "dev": "next dev",
-    "build": "next build && next build",
+    "build": "next build && next export",
     "lint": "next lint",
     "format": "prettier \"*/**.{js,ts,tsx,json,yml,md}\"",
     "update-constructions": "curl "
