@@ -16,7 +16,7 @@ jobs:
         run: yarn install --production --frozen-lockfile
       - name: Download constructions json
         run: |
-          curl -L -o assets/constructions.json ${{ secrets.CONSTRUCTIONS_API_ENDPOINT }}
+          curl -L -o public/api/v1/constructions.json ${{ secrets.CONSTRUCTIONS_API_ENDPOINT }}
       - name: Run formatting
         run: yarn format --write
       - name: Push json file
