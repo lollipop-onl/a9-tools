@@ -11,13 +11,14 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16
+          cache: yarn
       - name: Install dependencies
         run: yarn install --production --frozen-lockfile
       - name: Download constructions json
         run: |
           curl -L -o assets/constructions.json ${{ secrets.CONSTRUCTIONS_API_ENDPOINT }}
       - name: Run formatting
-        run: yarn format
+        run: yarn format --write
       - name: Push json file
         run: |
           git remote set-url origin https://github-actions:${{ github.token }}@github.com/${{ github.repository }}
