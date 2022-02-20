@@ -11,6 +11,8 @@ jobs:
       - name: Download constructions json
         run: |
           curl -L -o assets/constructions.json ${{ secrets.CONSTRUCTIONS_API_ENDPOINT }}
+      - name: Run formatting
+        run: yarn format
       - name: Push json file
         run: |
           git remote set-url origin https://github-actions:${{ github.token }}@github.com/${{ github.repository }}
