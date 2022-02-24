@@ -10,10 +10,10 @@ const SearchConstructionsPage: NextPage = () => {
 
   const [targetCategories, setTargetCategories] = useState(categories);
 
-  const filteredConstructions = useMemo(
+  const hiddenConstructions = useMemo(
     () =>
-      constructions.filter(({ category }) =>
-        targetCategories.includes(category)
+      constructions.filter(
+        ({ category }) => !targetCategories.includes(category)
       ),
     [constructions, targetCategories]
   );
@@ -34,7 +34,8 @@ const SearchConstructionsPage: NextPage = () => {
       <div className="overflow-x-auto px-4 md:px-0">
         <UITable
           headers={["カテゴリ", "名称", "長辺", "短辺", "高さ"]}
-          items={filteredConstructions}
+          items={constructions}
+          hiddenItems={hiddenConstructions}
           keyProperty="name"
           renderRow={({ category, name, width, depth, height }) => [
             <div key={0} className="text-center">

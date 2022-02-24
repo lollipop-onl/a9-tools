@@ -4,7 +4,11 @@ module.exports = {
     fontFamily: {
       body: ["Zen Kaku Gothic Antique", "sans-serif"],
     },
-    extend: {},
+    extend: {
+      transitionProperty: {
+        sizing: "width, height, max-height, padding, margin",
+      },
+    },
   },
   plugins: [],
 };
