@@ -1,6 +1,7 @@
 import { NextPage } from "next";
 import { useState, useEffect, useMemo } from "react";
 import randomColor from "randomcolor";
+import { DiscussionEmbed } from "disqus-react";
 import { UITable } from "~/components/UITable";
 import { FormCheckboxGroup } from "~/components/FormCheckboxGroup";
 import { useConstructions } from "~/hooks/useConstructions";
@@ -65,6 +66,12 @@ const SearchConstructionsPage: NextPage = () => {
         />
       </div>
       <p>world</p>
+      <DiscussionEmbed
+        shortname="a9-tools"
+        config={{
+          identifier: "find/constructions",
+        }}
+      />
     </div>
   );
 };

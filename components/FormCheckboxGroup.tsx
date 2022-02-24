@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React from "react";
 
 type CheckboxValue = string;
 
@@ -15,30 +15,67 @@ export const FormCheckboxGroup = <T extends CheckboxValue>({
   value,
   onChange,
 }: Props<T>) => {
-  const onCheckboxChanged = (changedValue: T, checked: boolean) => {
+  const onCheckboxChanged = (
+    changedValue: T,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const withMetaKey =
+      event.nativeEvent instanceof PointerEvent
+        ? event.nativeEvent.metaKey
+        : false;
+    const { checked } = event.target;
+
+    // メタキーが押されている場合はその要素自体とそれ以外をトグルする
+    if (withMetaKey) {
+      const nextValue =
+        checked || value.length >= 2
+          ? [changedValue]
+          : options
+              .map(({ value }) => value)
+              .filter((value) => value !== changedValue);
+
+      onChange(nextValue);
+
+      return;
+    }
+
     const nextValue = checked
       ? value.concat(changedValue)
       : value.filter((v) => v !== changedValue);
 
-    console.log(nextValue, changedValue, checked);
+    if (nextValue.length === 0) {
+      onChange(options.map(({ value }) => value));
+
+      return;
+    }
 
     onChange(nextValue);
   };
 
   return (
     <>
-      {options.map(({ value: optionValue, text }) => (
-        <label key={optionValue}>
-          <input
-            type="checkbox"
-            name={name}
-            value={optionValue}
-            checked={value.includes(optionValue)}
-            onChange={(e) => onCheckboxChanged(optionValue, e.target.checked)}
-          />
-          {text ?? optionValue}
-        </label>
-      ))}
+      <div className="flex flex-wrap justify-center">
+        {options.map(({ value: optionValue, text }) => (
+          <label
+            key={optionValue}
+            className="mr-4 mb-2 flex select-none items-center space-x-1"
+          >
+            <input
+              type="checkbox"
+              className="text-slate-600 focus:ring focus:ring-slate-400"
+              name={name}
+              value={optionValue}
+              checked={value.includes(optionValue)}
+              onChange={(e) => onCheckboxChanged(optionValue, e)}
+            />
+            <span className="text-sm">{text ?? optionValue}</span>
+          </label>
+        ))}
+      </div>
+      <p className="text-xs text-slate-600">
+        Ctrl / Command
+        キーを押しながら選択するとそのアイテムとそれ以外の切り替えができます。
+      </p>
     </>
   );
 };
