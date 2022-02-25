@@ -53,7 +53,7 @@ export const FormCheckboxGroup = <T extends CheckboxValue>({
   };
 
   return (
-    <>
+    <div>
       <div className="flex flex-wrap justify-center">
         {options.map(({ value: optionValue, text }) => (
           <label
@@ -72,10 +72,9 @@ export const FormCheckboxGroup = <T extends CheckboxValue>({
           </label>
         ))}
       </div>
-      <p className="text-xs text-slate-600">
-        Ctrl / Command
-        キーを押しながら選択するとそのアイテムとそれ以外の切り替えができます。
+      <p className="flex justify-center text-xs text-slate-600">
+        メタキーで単独選択
       </p>
-    </>
+    </div>
   );
 };
